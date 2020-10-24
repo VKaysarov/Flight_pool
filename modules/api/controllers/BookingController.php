@@ -40,6 +40,20 @@ class BookingController extends ActiveController
         return ['data' => $booking];
     }
 
+    public function actionViewSeat()
+    {
+        $params = Yii::$app->request->queryParams;
+        $code = $params['code'];
+
+        $seat = (new \yii\db\Query())->select(['passenger.id', 'place_from'])
+            ->from('booking')
+            ->leftJoin('passenger', 'passenger.booking_id = booking.id')
+            ->where(['booking.code' => $code])
+            ->all();
+
+        return ['occupied_from' => $seat];
+    }
+
     public function actionCreate()
     {
     	$post = Yii::$app->request->post();
