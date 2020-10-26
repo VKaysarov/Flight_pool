@@ -41,7 +41,7 @@ use Yii;
 use yii\rest\Controller;
 use yii\filters\ContentNegotiator;
 use yii\filters\auth\HttpBasicAuth;
-use yii\filters\auth\QueryParamAuth;
+use yii\filters\auth\HttpBearerAuth;
 use yii\web\Response;
 
 class UserController extends Controller
@@ -52,7 +52,7 @@ class UserController extends Controller
 	{
 		$model = new $this->modelClass;
 		$behaviors = parent::behaviors();
-		$behaviors['authenticator']['class'] = QueryParamAuth::className();
+		$behaviors['authenticator']['class'] = HttpBearerAuth::className();
 		$behaviors['authenticator']['except'] = ['login', 'register'];
 
 		return $behaviors;
@@ -124,6 +124,12 @@ class UserController extends Controller
 
         return true;
     }
+
+    public function actionViewBooking()
+    {
+        return "ok";
+    }
+
 
     protected function saveModel($model, $attrs, $statusCode = 200)
     {

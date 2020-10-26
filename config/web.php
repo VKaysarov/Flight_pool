@@ -55,6 +55,7 @@ $config = [
             	['class' => 'yii\rest\UrlRule', 'controller' => 'api/User'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'api/booking', 'pluralize' => false],
                 'api/login' => 'api/user/login',
+                'user/booking' => 'api/user/view-booking',
                 'api/booking/<code:\w+>/seat' => 'api/booking/view-seat',
                 'api/booking/<code:\w+>' => 'api/booking/view',
             ],
